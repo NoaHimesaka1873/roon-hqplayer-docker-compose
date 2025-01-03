@@ -1,0 +1,27 @@
+services:
+  docker-roonserver:
+    image: steefdebruijn/docker-roonserver:latest
+    container_name: docker-roonserver
+    hostname: Oomuro-ke
+    network_mode: host
+    environment:
+      TZ: "Asia/Seoul"
+    volumes:
+      - ./app:/app
+      - ./data:/data
+      - ./music:/music
+      - ./backups:/backup
+  hqplayer:
+    network_mode: host
+    build: ./hqplayer-docker5
+    restart: always
+    volumes:
+      - ./hqplayer:/etc/hqplayer
+    devices:
+    - /dev/bus/usb:/dev/bus/usb
+    security_opt:
+      - seccomp:unconfined
+    cap_add:
+      - SYS_NICE
+    environment:
+      TZ: "Asia/Seoul"
