@@ -1,6 +1,6 @@
 services:
   docker-roonserver:
-    image: steefdebruijn/docker-roonserver:latest
+    image: ghcr.io/noahimesaka1873/roonserver:latest
     container_name: docker-roonserver
     hostname: Oomuro-ke # Change to your choice of hostname
     network_mode: host
